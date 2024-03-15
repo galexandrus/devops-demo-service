@@ -42,4 +42,13 @@ ENV SERVICE_HOST="0.0.0.0"
 ENV SERVICE_PORT=8000
 
 # Run service
-CMD python manage.py migrate && gunicorn --workers=1 --bind $SERVICE_HOST:$SERVICE_PORT devops_demo.wsgi
+CMD python manage.py makemigrations && \
+    python manage.py migrate && \
+    python manage.py createsuperuser \
+        --noinput \
+        --username $DJANGO_SUPERUSER_USERNAME
+        --email $DJANGO_SUPERUSER_EMAIL && \
+    python manage.py runserver 0.0.0.0:8000
+# gunicorn --workers=1 --bind $SERVICE_HOST:$SERVICE_PORT devops_demo.wsgi
+# COPY start.sh /code/
+# ENTRYPOINT ["/code/start.sh"]

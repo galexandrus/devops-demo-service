@@ -5,8 +5,11 @@ services:
       - "8000:8000"
     env_file: .env
     restart: always
+    depends_on:
+      - db
     links:
       - db:dbserver
+
   db:
     image: postgres
     env_file: .env-postgres
