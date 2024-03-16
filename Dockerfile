@@ -42,7 +42,8 @@ ENV SERVICE_HOST="0.0.0.0"
 ENV SERVICE_PORT=8000
 
 # Run service
-CMD python manage.py makemigrations && \
+CMD sleep 5 && \
+    python manage.py makemigrations && \
     python manage.py migrate && \
     python manage.py createsuperuser \
         --noinput \
