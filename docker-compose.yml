@@ -1,4 +1,13 @@
 services:
+  db:
+    image: postgres
+    env_file: .env-postgres
+    restart: always
+    ports:
+      - 8432:5432
+    volumes:
+      - devops-demo-db:/var/lib/postgresql/data
+
   app:
     build: .
     ports:
@@ -9,15 +18,6 @@ services:
       - db
     links:
       - db:dbserver
-
-  db:
-    image: postgres
-    env_file: .env-postgres
-    restart: always
-    ports:
-      - 8432:5432
-    volumes:
-      - devops-demo-db:/var/lib/postgresql/data
 
 volumes:
   devops-demo-db:
