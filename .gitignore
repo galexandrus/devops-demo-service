@@ -123,8 +123,8 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
-.env-postgres
+# .env
+# .env-postgres
 .venv
 env/
 venv/

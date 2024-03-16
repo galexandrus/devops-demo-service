@@ -23,12 +23,5 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-          apt update
-          apt install -y gcc g++
-          pip install --upgrade pip
-          pip install poetry
-          poetry export --without-hashes -f requirements.txt --output ./requirements.txt
-          pip install -r ./requirements.txt
-          pip install gunicorn
-          poetry run python manage.py test
+          docker compose up -d --build && docker exec devops-demo-service-app-1 python manage.py test
       - run: echo "🍏 This job's status is ${{ job.status }}."
