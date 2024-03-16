@@ -46,9 +46,6 @@ CMD python manage.py makemigrations && \
     python manage.py migrate && \
     python manage.py createsuperuser \
         --noinput \
-        --username $DJANGO_SUPERUSER_USERNAME
+        --username $DJANGO_SUPERUSER_USERNAME \
         --email $DJANGO_SUPERUSER_EMAIL && \
-    python manage.py runserver 0.0.0.0:8000
-# gunicorn --workers=1 --bind $SERVICE_HOST:$SERVICE_PORT devops_demo.wsgi
-# COPY start.sh /code/
-# ENTRYPOINT ["/code/start.sh"]
+    python manage.py runserver $SERVICE_HOST:$SERVICE_PORT

@@ -1,5 +1,5 @@
 services:
-  devops-demo:
+  app:
     build: .
     ports:
       - "8000:8000"
@@ -21,4 +21,3 @@ services:
 
 volumes:
   devops-demo-db:
-
